@@ -7,14 +7,11 @@ import com.chaesh.Domain.dailyPlan.entity.DailyPlanRepository;
 import com.chaesh.Domain.dailyPlan.service.DailyPlanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class DailyPlanController {
 
@@ -36,8 +33,8 @@ public class DailyPlanController {
         return dailyPlanId;
     }
 
-    @GetMapping("/dailyplan/{dailyPlanId}/{month}")
-    public List<DailyPlanListResponseDto> findAllMonth(@PathVariable Long dailyPlanId, @PathVariable String month){
-        return dailyPlanService.findByMonth(dailyPlanId,month);
+    @GetMapping("/dailyplan/{memberId}/{month}")
+    public List<DailyPlanListResponseDto> findAllMonth(@PathVariable Long memberId, @PathVariable String month){
+        return dailyPlanService.findByMonth(memberId,month);
     }
 }

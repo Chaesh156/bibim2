@@ -22,6 +22,16 @@ public enum ErrorCode {
     TODOLIST_NOT_FOUND(400, "T001", "존재 하지 않는 투두리스트입니다"),
 
 
+    //Follow
+    PUSH_NOTIFICATION_FAIL(400,"F001", "푸쉬 알림이 전송되지 않았습니다."),
+    FOLLOW_ALREADY_EXIST(400, "F001", "이미 팔로우한 유저입니다."),
+    UNFOLLOW_FAIL(400, "F002", "팔로우하지 않은 유저와 언팔로우를 할 수 없습니다."),
+    FOLLOW_MYSELF_FAIL(400, "F003", "자기 자신을 팔로우 할 수 없습니다."),
+    UNFOLLOW_MYSELF_FAIL(400, "F004", "자기 자신을 언팔로우 할 수 없습니다."),
+    FOLLOWER_DELETE_FAIL(400, "F005", "팔로워 삭제할 수 없는 대상입니다."),
+    FOLLOWING_NOT_FOUND(400, "F006", "팔로잉한 유저가 없습니다."),
+    FOLLOWER_NOT_FOUND(400, "F007", "팔로워가 없습니다."),
+
     ;
 
     private final int status;

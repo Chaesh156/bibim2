@@ -1,17 +1,18 @@
 package com.chaesh.Domain.dailyPlan.controller;
 
+import com.chaesh.Domain.dailyPlan.dto.MemberFirebaseTokenRequestDto;
 import com.chaesh.Domain.dailyPlan.dto.MemberRequestDto;
 import com.chaesh.Domain.dailyPlan.dto.MemberResponseDto;
 import com.chaesh.Domain.dailyPlan.service.MemberService;
+import com.chaesh.Global.result.ResultCode;
+import com.chaesh.Global.result.ResultResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@Service
+@RestController
 public class MemberController {
 
     private final MemberService memberService;
@@ -26,8 +27,15 @@ public class MemberController {
         return memberService.findById(member_id);
     }
 
-    @GetMapping("/member/{email}")
+    @GetMapping("/member/email/{email}")
     public MemberResponseDto findByEmail(@PathVariable String email){
         return memberService.findByEmail(email);
+    }
+
+    @PostMapping("/firebaseToken/{memberId}")
+    public ResponseEntity<ResultResponse> saveOrUpdateFirebaseToken(@PathVariable Long memberId, @RequestBody MemberFirebaseTokenRequestDto requestDto){
+        boolean isSave = memberService.saveOrUpdateFireBaseTokenByMemberId(memberId, requestDto);
+
+        return ResponseEntity.ok(ResultResponse.of(SAVE_OR_UPDATE_FIREBASE_TOKEN_SUCCESS,isSave));
     }
 }

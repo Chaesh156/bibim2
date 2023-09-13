@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 public class Member {
@@ -23,11 +24,14 @@ public class Member {
 
     private Long planSuccessCount;
 
+    private String firebaseToken;
+
 
     @Builder
-    public Member(String email, String profileUrl, Long planSuccessCount){
+    public Member(String email, String profileUrl, Long planSuccessCount, String firebaseToken){
         this.email = email;
         this.profileUrl = profileUrl;
         this.planSuccessCount = planSuccessCount;
+        this.firebaseToken = firebaseToken;
     }
 }

@@ -21,7 +21,7 @@ public class DailyPlanService {
     public long save(Long memberId, String date) throws RuntimeException{
         DailyPlan plan = new DailyPlan();
         plan.setMember(memberId);
-        plan.setYear_month(Long.parseLong(date.substring(0,5)));
+        plan.setYear_month(Long.parseLong(date.substring(0,6)));
         plan.setDate(Long.parseLong(date.substring(6)));
 
         return dailyPlanRepository.save(plan).getId();
@@ -35,7 +35,7 @@ public class DailyPlanService {
 
     @Transactional
     public List<DailyPlanListResponseDto> findByMonth(Long id, String month){
-       return dailyPlanRepository.findAllMonth().stream()
+       return dailyPlanRepository.findAllMonth(id).stream()
                .map(DailyPlanListResponseDto::new)
                .collect(Collectors.toList());
     }

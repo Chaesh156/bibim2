@@ -18,8 +18,6 @@ public class ToDo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
     @ManyToOne
